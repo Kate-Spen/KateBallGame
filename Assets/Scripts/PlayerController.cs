@@ -71,7 +71,8 @@ public class PlayerController : MonoBehaviour
 
             // Increment the count of "PickUp" objects collected.
             count = count + 1;
-
+            //Play sound effect
+            AudioManager.Instance.PlayPickUp();
             // Update the count display.
             SetCountText();
         }
@@ -88,7 +89,8 @@ public class PlayerController : MonoBehaviour
         {
             // Display the win text.
             winTextObject.SetActive(true);
-
+            //Play sound effect
+            AudioManager.Instance.PlayWinSound();
             // Destroy the enemy GameObject.
             Destroy(GameObject.FindGameObjectWithTag("Enemy"));
         }
@@ -100,7 +102,8 @@ public class PlayerController : MonoBehaviour
         {
             // Destroy the current object
             Destroy(gameObject);
-
+            //Play sound effect
+            AudioManager.Instance.PlayLoseSound();
             // Update the winText to display "You Lose!"
             winTextObject.gameObject.SetActive(true);
             winTextObject.GetComponent<TextMeshProUGUI>().text = "You Lose!";
