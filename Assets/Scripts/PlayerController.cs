@@ -22,6 +22,9 @@ public class PlayerController : MonoBehaviour
 
     // UI object to display winning text.
     public GameObject winTextObject;
+    //FX
+    public ParticleSystem explosionFX;
+    public ParticleSystem pickupFX;
 
     // Start is called before the first frame update.
     void Start()
@@ -75,6 +78,9 @@ public class PlayerController : MonoBehaviour
             AudioManager.Instance.PlayPickUp();
             // Update the count display.
             SetCountText();
+            //show pickup fx
+            var currentPickupFX = Instantiate(pickupFX, other.transform.position, Quaternion.identity);
+            Destroy(currentPickupFX, 3);
         }
     }
 
@@ -107,7 +113,10 @@ public class PlayerController : MonoBehaviour
             // Update the winText to display "You Lose!"
             winTextObject.gameObject.SetActive(true);
             winTextObject.GetComponent<TextMeshProUGUI>().text = "You Lose!";
-
+            //explosion fx
+            Instantiate(explosionFX, transform.position, Quaternion.identity);
+            // Set the speed of the enemy's animation to 0
+            collision.gameObject.GetComponentInChildren<Animator>().SetFloat("speed_f", 0);
         }
 
     }

@@ -3,6 +3,8 @@ using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour
 {
+    private Animator anim;
+
     // Reference to the player's transform.
     public Transform player;
 
@@ -14,6 +16,14 @@ public class EnemyMovement : MonoBehaviour
     {
         // Get and store the NavMeshAgent component attached to this object.
         navMeshAgent = GetComponent<NavMeshAgent>();
+
+        //Get the animator component
+        anim = GetComponentInChildren<Animator>();
+        //Set the value of speed_f
+        if (anim)
+        {
+            anim.SetFloat("speed_f", navMeshAgent.speed);
+        }
     }
 
     // Update is called once per frame.
